@@ -1,10 +1,11 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class numlist {
     public static void main(String args[]) {
-        ArrayList<String> numbers = new ArrayList<>();
+        ArrayList<Integer> numbers = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -65,12 +66,11 @@ public class numlist {
         System.out.println("9. Quit");
     }
 
-    public static int makeAChoice(Scanner sc, int lowerBound, int upperBound) {
+    public static Integer makeAChoice(Scanner sc, int lowerBound, int upperBound) {
         int choice;
         while (true) {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
-            // clear the keyboard buffer to get rid of the \n in there
             sc.nextLine();
             System.out.println("Your choice: " + choice);
             if (choice >= lowerBound && choice <= upperBound) {
@@ -82,7 +82,7 @@ public class numlist {
         return choice;
     }
 
-    public static void displaynumbers(ArrayList<String> numbers) {
+    public static void displaynumbers(ArrayList<Integer> numbers) {
         System.out.println();
         System.out.println("Displaying all numbers");
 
@@ -91,21 +91,21 @@ public class numlist {
         }
     }
 
-    public static void editnumber(ArrayList<String> numbers, Scanner sc) {
+    public static void editnumber(ArrayList<Integer> numbers, Scanner sc) {
         System.out.println();
         System.out.println("Edit number");
         displaynumbers(numbers);
         System.out.print("Choose the number to edit: ");
         
         int numberIndex = sc.nextInt();
-        sc.nextLine();
+        sc.nextInt();
 
         System.out.print("Enter the new number: ");
-        String newnumberName = sc.nextLine();
+        Integer newnumberName = sc.nextInt();
         numbers.set(numberIndex, newnumberName);
     }
 
-    public static void deletenumber(ArrayList<String> numbers, Scanner sc) {
+    public static void deletenumber(ArrayList<Integer> numbers, Scanner sc) {
         System.out.println("Delete number");
 
         System.out.println("Edit number");
@@ -113,11 +113,20 @@ public class numlist {
         System.out.print("Choose the number to edit: ");
         
         int numberIndex = sc.nextInt();
-        sc.nextLine();
+        sc.nextInt();
 
         numbers.remove(numberIndex);
     }
-    public static void calculateMean(ArrayList<Double> numbers) {
+
+    public static void addnumber(ArrayList<Integer> numbers, Scanner sc) {
+        System.out.println();
+        System.out.println("Add new number");
+        System.out.print("Enter the number: ");
+        Integer numberValue = sc.nextInt(); 
+        numbers.add(numberValue);
+    }
+
+    public static void calculateMean(ArrayList<Integer> numbers) {
         if (numbers.isEmpty()) {
             System.out.println("No numbers to calculate the mean.");
             return;
@@ -130,7 +139,7 @@ public class numlist {
         System.out.printf("Mean: ", mean);
     }
 
-    public static void calculateMedian(ArrayList<Double> numbers) {
+    public static void calculateMedian(ArrayList<Integer> numbers) {
         if (numbers.isEmpty()) {
             System.out.println("No numbers to calculate the median.");
             return;
@@ -146,7 +155,7 @@ public class numlist {
         System.out.printf("Median: ", median);
     }
 
-    public static void calculateMode(ArrayList<Double> numbers) {
+    public static void calculateMode(ArrayList<Integer> numbers) {
         if (numbers.isEmpty()) {
             System.out.println("No numbers to calculate the mode.");
             return;
@@ -178,12 +187,4 @@ public class numlist {
         System.out.printf("Mode: ", mode, maxCount);
     }
 
-    public static void addnumber(ArrayList<String> numbers, Scanner sc) {
-        System.out.println();
-        System.out.println("Add new number");
-        System.out.print("Enter the number: ");
-        String numberName = sc.nextLine(); 
-        numbers.add(numberName);
-
-    }
 }
